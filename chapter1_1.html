@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Глава 7 — Обратно к истокам</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #0f0f0f;
+      color: #facc15;
+      overflow-x: hidden;
+    }
+    .plov-particle {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, #facc15 0%, #000 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 50;
+      opacity: 0.3;
+      animation: float 3s infinite ease-in-out;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen relative">
+  <header class="text-center py-10 bg-black bg-opacity-60">
+    <h1 class="text-4xl md:text-5xl font-bold text-red-400">Глава 1 — Начало великой битвы</h1>
+    <p class="text-lg text-red-200 mt-2">Начало великой битвы...</p>
+  </header>
 
+  <main class="max-w-3xl mx-auto px-4 py-10 space-y-6 text-red-100 leading-relaxed">
+    <p>Скоро появится...</p>
+
+    <div class="text-center mt-12">
+      <a href="index.html" class="inline-block bg-red-400 text-black font-semibold px-6 py-3 rounded-xl shadow hover:bg-red-300 transition">← Назад ко всем главам</a>
+    </div>
+  </main>
+
+  <script>
+    const plovParticles = [];
+    const NUM_PARTICLES = 30;
+    for (let i = 0; i < NUM_PARTICLES; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('plov-particle');
+      document.body.appendChild(particle);
+      plovParticles.push(particle);
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      plovParticles.forEach((particle, i) => {
+        const offsetX = Math.sin(i + e.clientY / 100) * 30;
+        const offsetY = Math.cos(i + e.clientX / 100) * 30;
+        particle.style.left = `${e.clientX + offsetX}px`;
+        particle.style.top = `${e.clientY + offsetY}px`;
+      });
+    });
+  </script>
+</body>
+</html>
