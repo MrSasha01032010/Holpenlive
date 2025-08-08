@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Глава 3 — Восстание плова</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #0f0f0f;
+      color: #facc15;
+      overflow-x: hidden;
+    }
+    .plov-particle {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, #facc15 0%, #000 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 50;
+      opacity: 0.3;
+      animation: float 3s infinite ease-in-out;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen relative">
+  <header class="text-center py-10 bg-black bg-opacity-60">
+    <h1 class="text-4xl md:text-5xl font-bold text-yellow-400">Глава 3 — Восстание плова</h1>
+    <p class="text-lg text-yellow-200 mt-2">Когда плов — это всё.</p>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-4 py-10 space-y-6 text-yellow-100 leading-relaxed">
+    <p>Холпен сидел у окна, глядя на закат. Его сердце было разбито, но глаза — горели.<br>
+    — Значит, сто ванн, да?.. — прошептал он. — Тогда я сделаю тысячу.</p>
+
+    <p>Но одна душа, даже такая великая, как у Холпена, не сварит тысячу ванн плова в одиночку. Он открыл ВКонтакте и нашёл её — маму Арсения.</p>
+
+    <p>«Здравствуйте. Ваш сын на фуре может доехать до Узбекистана? Очень нужно. Для плова».</p>
+
+    <p>Ответ был короткий:<br>
+    «Он уже выехал».</p>
+
+    <p>Затем Холпен написал Пантеру:<br>
+    «Брат, всё серьёзно. Прилетай. Плов. Тысяча ванн. Полина ушла к чёрному.»<br>
+    «Я в пути» — ответил Пантер, не спрашивая ничего.</p>
+
+    <p>Через сутки, под грохот фуры Арсения и шум турбин самолёта Пантера, Узбекистан содрогнулся. Холпен высыпал на кухню весь Afternoon. Сам чай ахуел. Плов кипел, крутился, шипел.</p>
+
+    <p>— Мы на грани величия… — сказал Пантер.<br>
+    — Но… — Холпен медленно повернулся — мяса не хватает.</p>
+
+    <p>Они посмотрели друг на друга. Было понятно: придётся выбирать. Пантер тяжело вздохнул.<br>
+    — Если надо… я готов.</p>
+
+    <p>Холпен стиснул зубы:<br>
+    — Я отдам тебе ванну плова… но ты должен стать пловом сам.</p>
+
+    <p>Молча обнялись. Последний раз. И Пантер шагнул в огромный казан. В небе вспыхнула звезда. Плов наполнился величием.</p>
+
+    <p>Наутро 1000 ванн были готовы. Стояли рядами. Дым поднимался к небесам, а аромат плова тянулся до горизонта. Арсений вытирал слезу.</p>
+
+    <p>— Мы потеряли гения… но приобрели армию.</p>
+
+    <p>Холпен накинул чапан, взял ложку как меч и сказал:<br>
+    — Теперь мы идём за Полиной. И этот чёрный — пожалеет, что вообще родился.</p>
+
+    <div class="text-center mt-12">
+      <a href="index.html" class="inline-block bg-yellow-400 text-black font-semibold px-6 py-3 rounded-xl shadow hover:bg-yellow-300 transition">← Назад ко всем главам</a>
+    </div>
+  </main>
+
+  <script>
+    const plovParticles = [];
+    const NUM_PARTICLES = 30;
+    for (let i = 0; i < NUM_PARTICLES; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('plov-particle');
+      document.body.appendChild(particle);
+      plovParticles.push(particle);
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      plovParticles.forEach((particle, i) => {
+        const offsetX = Math.sin(i + e.clientY / 100) * 30;
+        const offsetY = Math.cos(i + e.clientX / 100) * 30;
+        particle.style.left = `${e.clientX + offsetX}px`;
+        particle.style.top = `${e.clientY + offsetY}px`;
+      });
+    });
+  </script>
+</body>
+</html>

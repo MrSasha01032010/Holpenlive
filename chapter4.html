@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Глава 4 — Битва за Полину</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #0f0f0f;
+      color: #facc15;
+      overflow-x: hidden;
+    }
+    .plov-particle {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, #facc15 0%, #000 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 50;
+      opacity: 0.3;
+      animation: float 3s infinite ease-in-out;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen relative">
+  <header class="text-center py-10 bg-black bg-opacity-60">
+    <h1 class="text-4xl md:text-5xl font-bold text-yellow-400">Глава 4 — Битва за Полину</h1>
+    <p class="text-lg text-yellow-200 mt-2">Финальная пловомясная разборка.</p>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-4 py-10 space-y-6 text-yellow-100 leading-relaxed">
+    <p>После того как Холпен сварил 1000 ванн плова, потерял Пантера и пустил на мясо весь Afternoon, он был настроен только на одно — вернуть Полину.</p>
+
+    <p>Вечером он сидел с Арсением на балконе, попивая плов ложкой прямо из ванны.<br>
+    — Мы потеряли Пантера… — тяжело сказал Холпен. — Он был мне больше, чем друг…<br>
+    — Но мы всё ещё можем вернуть Полину, — ответил Арсений. — Завтра будет бой. Не на жизнь, а на плов.</p>
+
+    <p>На следующее утро 1000 ванн были загружены в фуру. Фура трещала по швам, но ехала. Пахло жареным мясом, рисом и местью.</p>
+
+    <p>На месте встречи Чёрный уже ждал их. Рядом стояла Полина — грустная, но явно обрадованная, увидев Холпена.<br>
+    — Я не поняла, что тут делает Арсений, — тихо сказала она, — Но рада, что ты пришёл.</p>
+
+    <p>Холпен шагнул вперёд.<br>
+    — Отдай Полину.<br>
+    Арсений перебил:<br>
+    — ОТДАВАЙ ПОЛИНУ, ГНИДА!<br>
+    Чёрный усмехнулся:<br>
+    — Нет. Это теперь моё.</p>
+
+    <p>— У нас тысяча ванн плова, — спокойно сказал Холпен. — Нам нечего терять.</p>
+
+    <p>В ту же секунду Арсений схватил три ванны и кинул их как артиллерию. Чёрный уклонился, но закричал:<br>
+    — ВАМ КОНЕЦ!</p>
+
+    <p>И тут началась плововая буря. Холпен стрелял ваннами как из пулемёта. Рис летел во все стороны, казаны взрывались. Через 10 секунд у них осталось лишь 700 ванн, но Чёрный лежал на земле, весь в плове, глаза закатаны.<br>
+    — Я в плововом раю… — бормотал он. — Плов… плов…</p>
+
+    <p>Холпен подошёл к Полине.<br>
+    — Ты в порядке?<br>
+    — Да… спасибо тебе.</p>
+
+    <p>— ВСЕ В ФУРУ! — крикнул он. Через минуту они уже ехали к морю.</p>
+
+    <p>На берегу Холпен открыл одну ванну:<br>
+    — Давайте вспомним Пантера… он продался за плов… и стал пловом.</p>
+
+    <p>Все опустили головы. Но тут… из ванны раздалось:<br>
+    — Я НЕ СВИНИНА, БЛЯТЬ!</p>
+
+    <p>Из плова поднялся Пантер, сделанный из риса, с глазами из зёрен перца.<br>
+    — ПАНТЕР ЖИВ! — закричал Арсений.<br>
+    — И голоден, — пробурчал Пантер.</p>
+
+    <p><strong>Плововая легенда продолжалась.</strong></p>
+
+    <div class="text-center mt-12">
+      <a href="index.html" class="inline-block bg-yellow-400 text-black font-semibold px-6 py-3 rounded-xl shadow hover:bg-yellow-300 transition">← Назад ко всем главам</a>
+    </div>
+  </main>
+
+  <script>
+    const plovParticles = [];
+    const NUM_PARTICLES = 30;
+    for (let i = 0; i < NUM_PARTICLES; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('plov-particle');
+      document.body.appendChild(particle);
+      plovParticles.push(particle);
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      plovParticles.forEach((particle, i) => {
+        const offsetX = Math.sin(i + e.clientY / 100) * 30;
+        const offsetY = Math.cos(i + e.clientX / 100) * 30;
+        particle.style.left = `${e.clientX + offsetX}px`;
+        particle.style.top = `${e.clientY + offsetY}px`;
+      });
+    });
+  </script>
+</body>
+</html>

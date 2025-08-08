@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Холпен и жизнь</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #0f0f0f;
+      color: #facc15;
+      overflow-x: hidden;
+    }
+    .plov-particle {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, #facc15 0%, #000 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 50;
+      opacity: 0.3;
+      animation: float 3s infinite ease-in-out;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen relative">
+  <header class="text-center py-10 bg-black bg-opacity-60">
+    <h1 class="text-4xl md:text-5xl font-bold text-yellow-400">Манга: Холпен и жизнь</h1>
+    <p class="text-lg text-yellow-200 mt-2">Плов. Любовь. Предательство. Легенда.</p>
+  </header>
+
+  <main class="flex flex-col items-center py-10 px-4">
+    <div class="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+      <a href="chapter1.html" class="bg-black bg-opacity-60 p-6 rounded-xl shadow-lg hover:scale-105 transition duration-300 border border-yellow-600">
+        <h2 class="text-2xl font-bold text-yellow-300">Глава 1</h2>
+        <p class="text-yellow-100">Плов и одеяло</p>
+      </a>
+      <a href="chapter2.html" class="bg-black bg-opacity-60 p-6 rounded-xl shadow-lg hover:scale-105 transition duration-300 border border-yellow-600">
+        <h2 class="text-2xl font-bold text-yellow-300">Глава 2</h2>
+        <p class="text-yellow-100">Плов и предательство</p>
+      </a>
+      <a href="chapter3.html" class="bg-black bg-opacity-60 p-6 rounded-xl shadow-lg hover:scale-105 transition duration-300 border border-yellow-600">
+        <h2 class="text-2xl font-bold text-yellow-300">Глава 3</h2>
+        <p class="text-yellow-100">Восстание плова</p>
+      </a>
+      <a href="chapter4.html" class="bg-black bg-opacity-60 p-6 rounded-xl shadow-lg hover:scale-105 transition duration-300 border border-yellow-600">
+        <h2 class="text-2xl font-bold text-yellow-300">Глава 4</h2>
+        <p class="text-yellow-100">Битва за Полину</p>
+      </a>
+      <a href="chapter5.html" class="bg-black bg-opacity-60 p-6 rounded-xl shadow-lg hover:scale-105 transition duration-300 border border-yellow-600">
+        <h2 class="text-2xl font-bold text-yellow-300">Глава 5</h2>
+        <p class="text-yellow-100">Возвращение на родину</p>
+      </a>
+    </div>
+  </main>
+
+  <script>
+    // Добавление рисинок (пловинок), двигающихся за курсором
+    const plovParticles = [];
+    const NUM_PARTICLES = 30;
+    for (let i = 0; i < NUM_PARTICLES; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('plov-particle');
+      document.body.appendChild(particle);
+      plovParticles.push(particle);
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      plovParticles.forEach((particle, i) => {
+        const offsetX = Math.sin(i + e.clientY / 100) * 30;
+        const offsetY = Math.cos(i + e.clientX / 100) * 30;
+        particle.style.left = `${e.clientX + offsetX}px`;
+        particle.style.top = `${e.clientY + offsetY}px`;
+      });
+    });
+  </script>
+</body>
+</html>

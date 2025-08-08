@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Глава 2 — Плов и предательство</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #0f0f0f;
+      color: #facc15;
+      overflow-x: hidden;
+    }
+    .plov-particle {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, #facc15 0%, #000 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 50;
+      opacity: 0.3;
+      animation: float 3s infinite ease-in-out;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen relative">
+  <header class="text-center py-10 bg-black bg-opacity-60">
+    <h1 class="text-4xl md:text-5xl font-bold text-yellow-400">Глава 2 — Плов и предательство</h1>
+    <p class="text-lg text-yellow-200 mt-2">Начинается тьма...</p>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-4 py-10 space-y-6 text-yellow-100 leading-relaxed">
+    <p>Утром Холпен разбудил Полину словами:<br>
+    — Собирайся. Мы летим в Узбекистан!</p>
+
+    <p>Через пару часов они уже сидели в самолёте, а рядом в багажном отсеке качалась та самая ванна плова. Прилетев домой, Холпен не терял времени — за день он приготовил пять новых ванн плова. Запах стоял такой, что весь квартал хотел в гости.</p>
+
+    <p>Вечером они пошли гулять. Но вдруг из-за угла вышел его чёрный друг — и с ухмылкой показал… сто ванн плова. Полина ахнула, бросила взгляд на Холпена — и ушла с ним.</p>
+
+    <p>Холпен остался стоять в тишине. В груди закипала обида. Он сжал кулаки и тихо сказал:<br>
+    — Я её верну. Даже если придётся сварить тысячу ванн плова…</p>
+
+    <div class="text-center mt-12">
+      <a href="index.html" class="inline-block bg-yellow-400 text-black font-semibold px-6 py-3 rounded-xl shadow hover:bg-yellow-300 transition">← Назад ко всем главам</a>
+    </div>
+  </main>
+
+  <script>
+    const plovParticles = [];
+    const NUM_PARTICLES = 30;
+    for (let i = 0; i < NUM_PARTICLES; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('plov-particle');
+      document.body.appendChild(particle);
+      plovParticles.push(particle);
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      plovParticles.forEach((particle, i) => {
+        const offsetX = Math.sin(i + e.clientY / 100) * 30;
+        const offsetY = Math.cos(i + e.clientX / 100) * 30;
+        particle.style.left = `${e.clientX + offsetX}px`;
+        particle.style.top = `${e.clientY + offsetY}px`;
+      });
+    });
+  </script>
+</body>
+</html>
